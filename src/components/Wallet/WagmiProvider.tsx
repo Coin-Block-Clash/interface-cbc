@@ -1,16 +1,22 @@
 "use client"
 import { WagmiProvider, createConfig, http } from "wagmi";
-import { optimismSepolia } from "wagmi/chains";
+import { optimismSepolia , arbitrum , optimism } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 
-const config = createConfig(
+ export const config = createConfig(
   getDefaultConfig({
-    chains: [optimismSepolia],
+    chains: [optimismSepolia , arbitrum , optimism ],
     transports: {
       [optimismSepolia.id]: http(
         `https://opt-sepolia.g.alchemy.com/v2/VIUNoniLrNB_ahw2ZpQxObfZqp8yVDrT`,
       ),
+      [arbitrum.id]: http(
+        `https://arb1.arbitrum.io/rpc`,
+      ),
+      [optimism.id]: http(
+        `https://mainnet.optimism.io/`,
+      )
     },
     walletConnectProjectId: "b3e275bd03d0f994672d0823110b5edf",
     appName: "Coin Block Clash",
