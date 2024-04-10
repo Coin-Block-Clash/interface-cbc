@@ -6,6 +6,9 @@ import { useBalance } from "wagmi";
 import { switchChain } from "@wagmi/core";
 import { config } from "../components/Wallet/WagmiProvider";
 import { arbitrum, optimism } from "wagmi/chains";
+import { toast } from "sonner"
+
+
 
 export default function Home() {
   const [clientLoaded, setClientLoaded] = useState(false);
@@ -16,23 +19,47 @@ export default function Home() {
     chainId: arbitrum.id,
   });
 
-  const handelSwitchArb = async () => {
-    const result = await switchChain(config, {
-      chainId: arbitrum.id,
-    });
-    return result;
+
+  const handleSwitchArb = async () => {
+    try {
+      const result = await switchChain(config, {
+        chainId: arbitrum.id,
+      });
+      toast.success("Switched to Arbitrum successfully.");
+      return result;
+    } catch (error) {
+      toast.error("Failed to switch to Arbitrum.");
+    }
   };
 
-  const handelSwitchop = async () => {
-    const result = await switchChain(config, {
-      chainId: optimism.id,
-    });
-    return result;
+  const handleSwitchOp = async () => {
+    try {
+      const result = await switchChain(config, {
+        chainId: optimism.id,
+      });
+      toast.success("Switched to Optimism successfully.");
+      return result;
+    } catch (error) {
+      toast.error("Failed to switch to Optimism.");
+    }
   };
+
+  const handleToastOp = async () => {
+    toast.success("Check");
+  };
+
+
+ useEffect(() => {
+    setClientLoaded(true);
+    // Optional: Welcome toast
+    toast.success("Welcome! Component has loaded.");
+  }, []);
 
   useEffect(() => {
-    setClientLoaded(true);
-  }, []);
+    if (isError) {
+      toast.error("Error fetching balance.");
+    }
+  }, [isError]);
 
   return (
     <>
@@ -46,13 +73,13 @@ export default function Home() {
         )}
         <button
           className="border-2 border-green-800 rounded-md"
-          onClick={handelSwitchArb}
+          onClick={handleSwitchArb}
         >
           Switch to ARB
         </button>
         <button
           className="border-2 border-green-800 rounded-md"
-          onClick={handelSwitchop}
+          onClick={handleSwitchOp}
         >
           Switch to OP
         </button>
@@ -81,7 +108,11 @@ export default function Home() {
             </div>
           )}
         </div>
+        <div>
+          <button onClick={handleToastOp}>Toast</button>
+        </div>
       </div>
+     
     </>
   );
 }
