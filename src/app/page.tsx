@@ -84,19 +84,19 @@ export default function Home() {
           Switch to OP
         </button>
         <div className="flex">
-          <h4>User Data</h4> :{" "}
+          <h4>User Game-Id</h4> :{" "}
           <input
             type="text"
             className="bg-black"
-            placeholder="enter your data here"
+            placeholder="Game-ID"
           />
         </div>
         <div className="flex">
-          <h4>User Tag</h4> :{" "}
+          <h4>User Email</h4> :{" "}
           <input
             type="text"
             className="bg-black"
-            placeholder="enter your game tag here"
+            placeholder="Email"
           />
         </div>
         <div>
