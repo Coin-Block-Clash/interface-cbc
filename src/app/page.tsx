@@ -12,13 +12,23 @@ import { toast } from "sonner"
 
 export default function Home() {
   const [clientLoaded, setClientLoaded] = useState(false);
+  
+  const [gameID ,  setgameID] = useState("");
+
+  
+
   const { address } = useAccount();
 
   const { data, isError, isLoading } = useBalance({
     address: "0x0000000000000000000000000000000000000000",
     chainId: arbitrum.id,
   });
-
+ 
+    
+  const handleGameChange = (event:any) => {
+    // console.log(event.target.value);
+    setgameID(event.target.value);
+};
 
   const handleSwitchArb = async () => {
     try {
@@ -89,6 +99,8 @@ export default function Home() {
             type="text"
             className="bg-black"
             placeholder="Game-ID"
+            value={gameID}
+            onChange={handleGameChange}
           />
         </div>
         <div className="flex">
