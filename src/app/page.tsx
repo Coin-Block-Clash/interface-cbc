@@ -9,8 +9,8 @@ import { toast } from "sonner";
 
 export default function Home() {
   const [clientLoaded, setClientLoaded] = useState(false);
-  const [gameID, setGameID] = useState(""); // CamelCase state variable
-  const [userEmail, setUserEmail] = useState(""); // CamelCase state variable
+  const [gameID, setGameID] = useState(""); 
+  const [userEmail, setUserEmail] = useState("");
 
   const { address } = useAccount();
   const { data, isError, isLoading } = useBalance({
@@ -59,11 +59,11 @@ export default function Home() {
         <button className="border-2 border-green-800 rounded-md" onClick={() => handleSwitchChain(optimism)}>Switch to OP</button>
         <div className="flex">
           <h4>User Game-Id</h4> : <input type="text" className="bg-black" placeholder="Game-ID" value={gameID} onChange={handleGameChange}/>
-          <button className="border-2 border-green-800 rounded-md">Submit</button>
+          <button className="border-2 border-green-800 rounded-md" onClick={() => toast.success("Success!")}>Submit</button>
         </div>
         <div className="flex">
           <h4>User Email</h4>  : <input type="text" className="bg-black" placeholder="Email" value={userEmail} onChange={handleEmailChange} />
-          <button className="border-2 border-green-800 rounded-md" onClick={handleEmailChange}>Submit</button>
+          <button className="border-2 border-green-800 rounded-md" onClick={() => toast.success("Success!")}>Submit</button>
         </div>
         {isLoading && <div>Loading...</div>}
         {isError && <div>Error fetching balance</div>}
