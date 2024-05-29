@@ -1,23 +1,38 @@
-import type { Metadata } from "next";
-import { Source_Code_Pro } from "next/font/google";
-import "./globals.css";
-import { Web3Provider } from "@/components/Wallet/WagmiProvider";
-import { Toaster } from "@/components/ui/sonner";
 
-const sourceCodeP = Source_Code_Pro({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/common/Navbar";
+import { Providers } from "@/utils/provider/walletProvider";
+
+
+
+
+const JetBrain = JetBrains_Mono({ 
+  weight: ["400", "500", "600", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   title: "Coin Block Clash",
-  description: "Bet on your skills",
+  description: "Bet On Your Skills",
 };
 
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className={sourceCodeP.className}>
-        <Web3Provider>{children}</Web3Provider>
-        <Toaster />
-        </body>
+      <body className={JetBrain.className}> 
+      <Providers>
+         <Navbar />
+        {children}
+        </Providers>
+      </body>
     </html>
   );
 }
