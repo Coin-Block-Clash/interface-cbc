@@ -5,7 +5,7 @@ import { WalletButton } from "../ui/Wallet";
 
 const Navbar = () => {
   const navItems = [
-    { id: 1, text: "Home", path: "/a" },
+    { id: 1, text: "Home", path: "/home" },
     { id: 2, text: "Stats", path: "/m" },
     { id: 3, text: "Pool", path: "/p" },
   ];

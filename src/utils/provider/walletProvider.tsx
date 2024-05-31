@@ -27,7 +27,7 @@ export function Providers(props: { children: ReactNode }) {
     return (
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <ConnectKitProvider>{props.children}</ConnectKitProvider>
+          <ConnectKitProvider theme="rounded">{props.children}</ConnectKitProvider>
         </QueryClientProvider>
       </WagmiProvider>
     );

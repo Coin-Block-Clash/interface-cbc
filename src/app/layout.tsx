@@ -1,12 +1,9 @@
-
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import { Providers } from "@/utils/provider/walletProvider";
-
-
-
+import { ReactNode } from "react";
 
 const JetBrain = JetBrains_Mono({ 
   weight: ["400", "500", "600", "700"],
@@ -20,17 +17,13 @@ export const metadata: Metadata = {
   description: "Bet On Your Skills",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(props: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={JetBrain.className}> 
       <Providers>
          <Navbar />
-        {children}
+         {props.children}
         </Providers>
       </body>
     </html>
